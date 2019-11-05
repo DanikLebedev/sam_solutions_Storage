@@ -1,25 +1,23 @@
-const colorChangeBtn = document.getElementById('change-color');
-const body = document.querySelector('body');
+const inpName = document.getElementById('inpName');
+const inpPhone = document.getElementById('inpPhone');
+const btnInsert = document.getElementById('btnInsert');
+const output = document.querySelector('.output');
+
+btnInsert.addEventListener('click', () => {
+    const name = inpName.value;
+    const phone = inpPhone.value;
+
+    if (name && phone) {
+        localStorage.setItem(name, phone);
+        location.reload();
+    }
+
+})
 
 
-colorChangeBtn.addEventListener('click', () => {
-    localStorage.setItem('color', 'green');
-    location.reload()
-});
+for (let i = 0; i < localStorage.length; i++) {
+    const name = localStorage.key(i);
+    const phone = localStorage.getItem(name);
 
-const fontColor = localStorage.getItem('font-color');
-body.style.color = fontColor;
-
-const color = localStorage.getItem('color');
-body.style.backgroundColor = color;
-
-// if (!window.localStorage.getItem('color')) {
-//     location.reload()
-// }
-//
-// if (!window.localStorage.getItem('font-color')) {
-//     location.reload()
-// }
-
-
-
+    output.innerHTML += `Имя: ${name} , Телефон: ${phone} <br>`
+}
