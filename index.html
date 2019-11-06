@@ -6,19 +6,23 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .promotion {
-            border: 2px solid red;
-            padding: 10px;
-        }
-    </style>
 </head>
 <body>
-<div class="promotion">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, odio.</p>
-    <button>Close modal</button>
+<div class="setCookie">
+    <input type="text" placeholder="Set name" class="setName">
+    <input type="text" placeholder="Set value" class="setValue">
+    <button class="set">Set Cookie</button>
+</div>
+<div class="getCookie">
+    <input type="text" class="inpGet">
+    <button class="get">Get Cookie</button>
+
+</div>
+<div class="deleteCookie">
+    <input type="text" class="inpDelete">
+    <button class="delete">Delete Cookie</button>
 </div>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 </body>
 </html>

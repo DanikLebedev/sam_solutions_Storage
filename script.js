@@ -1,46 +1,34 @@
-// function writeCookie (key, value, hours) {
-//     var date = new Date();
-//
-//     // Get unix milliseconds at current time plus number of hours
-//     date.setTime(+ date + (hours * 60 * 60 * 1000)); //60 * 60 * 1000
-//
-//     window.document.cookie = key + "=" + value + "; expires=" + date.toGMTString() + "; path=/";
-//
-//     return value;
-// }
-//
-// writeCookie ("myCookie", "12345", 0.001);
+import singleTon from './singleton.js'
 
-function getCookie(name) {
-    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-    return match
-}
+const inpSetName = document.querySelector('.setName');
+const inpSetValue = document.querySelector('.setValue');
+const inpGet = document.querySelector('.inpGet');
+const inpDel = document.querySelector('.inpDelete')
+const btnSetCookie = document.querySelector('.set')
+const btnGetCookie = document.querySelector('.get')
+const btnDeleteCookie = document.querySelector('.delete')
+const wrapper = document.querySelector('.getCookie');
 
-console.log(getCookie('time'));
+const myCookie = new singleTon();
 
-const btn = document.querySelector('button');
-const modal = document.querySelector('.promotion');
+btnSetCookie.addEventListener('click', () => {
+    const name = inpSetName.value;
+    const value = inpSetValue.value;
 
-btn.addEventListener('click', () => {
-    document.cookie = "time=3600; max-age=3600";
-    modal.style.display = 'none';
-    location.reload()
-});
+    if (name && value) {
+        myCookie.setCookie(name,value)
+    }
+})
 
-// function setCookie(name,value,hours) {
-//     var maxAge = "";
-//     if (hours) {
-//         var date = new Date();
-//         date.setTime(date.getTime() + (hours*60*60*1000));
-//         expires = "; expires=" + date.toUTCString();
-//     }
-//     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-// }
+btnDeleteCookie.addEventListener('click', () => {
+    const name = inpDel.value
+    myCookie.deleteCookie(name);
+})
 
-if (getCookie('time')) {
-    modal.style.display = 'none';
-} else {
-    modal.style.display = 'block';
-}
+btnGetCookie.addEventListener('click', () => {
+    const name = inpGet.value
+    const li = document.createElement('li');
+    li.innerHTML = `name: ${name} , value: ${myCookie.getCookieName(name)}`;
+    wrapper.appendChild(li);
 
-
+})
